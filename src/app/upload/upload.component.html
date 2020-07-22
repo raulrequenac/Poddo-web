@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<app-header (userOut)="updateUser($event)"></app-header>
+<div class="Subscriptions content">
+  <form [formGroup]="uploadForm" (ngSubmit)="submitForm()">
+    <input placeholder="Title" formControlName="title" />
+    <select multiple size="7" formControlName="tags">
+      <option *ngFor="let tag of tags" value="{{tag.toUpperCase()}}">{{ tag }}</option>
+    </select>
+    <textarea
+      formControlName="description"
+      placeholder="Enter a description for your podcast."
+      rows="4"
+      cols="50"
+    >
+    </textarea>
+    <select formControlName="status">
+      <option *ngFor="let stat of status" value="{{stat.toUpperCase()}}">{{stat}}</option>
+    </select>
+    <label>
+    <input type="checkbox" formControlName="allowComments">
+    Allow comments
+    </label>
+    <input type="file" accept="audio/mpeg" (change)="onFileChange($event)">
+    <button type="submit">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+<app-header></app-header>
+<div class="Login content">
+  <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+    <img src="../../assets/images/profile.png"/>
+    <input placeholder="Username" formControlName="username">
+    <input placeholder="Password" formControlName="password" type="password">
+    <button type="submit" [disabled]="!loginForm.valid">Log in</button>
+    <small>Still don't have an account? <b routerLink="/signin">Sign in</b></small>
+  </form>
+</div>

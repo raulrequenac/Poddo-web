@@ -1,0 +1,5 @@
+<app-navbar></app-navbar>
+<app-header (userOut)="updateUser($event)"></app-header>
+<div class="Subscriptions content">
+  <app-not-logged [user]="user" [view]="'subscriptions'"></app-not-logged>
+</div>

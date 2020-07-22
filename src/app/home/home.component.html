@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+<app-header></app-header>
+<div class="Home content">
+  <div class="tags">
+    <div *ngFor="let tag of tags" class="tag">
+      <img src="{{ '../../assets/images/' + tag.toLowerCase() + '.svg' }}" />
+    </div>
+  </div>
+  <div class="podcasts">
+    <p *ngIf="!podcasts.length" class="no-podcasts">
+      There's nothing to show here... yet.
+    </p>
+    <div class="podcast" *ngFor="let podcast of podcasts">
+      <img src="../../assets/images/home.svg"  width="100%" routerLink="{{'/listen/'+podcast.id}}"/>
+      <p>{{ podcast.title }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<app-header></app-header>
+<div class="Listen content">
+  <audio controls controlsList="nodownload" *ngIf="podcast">
+    <source src="{{podcast.audio}}" type="audio/mpeg">
+  </audio>
+  <div>
+    <small *ngFor="let tag of podcast.tags">{{tag}}</small>
+  </div>
+  <h1>{{podcast.title}}</h1>
+  <p>{{podcast.creationDate}}</p>
+  <h2 (click)="starPodcast()">{{stars}} Stars</h2>
+  <div class="comments">
+    <div *ngFor="let comment of podcast.comments" class="comment">
+      <small>{{comment.userId}}</small>
+      <small>{{comment.createdAt}}</small>
+      <p (click)="starComment()">{{comment.stars}} Stars</p>
+      <p>{{comment.text}}</p>
+      <div *ngFor="let response of comment.responses">
+        <small>{{response.userId}}</small>
+        <small>{{response.createdAt}}</small>
+        <p>{{response.text}}</p>
+      </div>
+    </div>
+  </div>
+</div>

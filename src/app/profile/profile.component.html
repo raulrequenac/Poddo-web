@@ -1,0 +1,5 @@
+<app-navbar></app-navbar>
+<app-header (userOut)="updateUser($event)"></app-header>
+<div class="Profile content">
+  <app-not-logged [user]="user" [view]="'profile'"></app-not-logged>
+</div>

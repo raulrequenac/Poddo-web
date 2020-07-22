@@ -1,0 +1,82 @@
+.Header {
+  width: -webkit-fill-available;
+  height: 4rem;
+  background-color: #202020;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: end;
+  cursor: pointer;
+}
+
+.logo {
+  width: 2rem;
+}
+
+.logo-title {
+  color: white;
+}
+
+form {
+  display: flex;
+}
+
+input {
+  background-color: #121212;
+  border: 2px solid #303030;
+  border-radius: 5px 0 0 5px;
+  padding: .5rem;
+  color: white;
+  font-weight: bold;
+  width: 20rem;
+}
+
+input:focus {
+  border: 2px solid #69e781;
+}
+
+.search-btn {
+  background-color: #303030;
+  width: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.search {
+  width: 1rem;
+}
+
+.tools {
+  width: 8rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tool {
+  width: 1.8rem;
+  cursor: pointer;
+}
+
+.log {
+  border: 2px solid white;
+  color: white;
+  border-radius: 5px;
+  padding: .5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.log:hover {
+  background-color: white;
+  color: #202020;
+}

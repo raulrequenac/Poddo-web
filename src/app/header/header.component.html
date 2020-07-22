@@ -1,0 +1,25 @@
+<div class="Header">
+  <div class="logo-container" routerLink="/">
+    <img src="../../assets/images/logo.svg" class="logo" />
+    <h1 class="logo-title">Pōddō</h1>
+  </div>
+  <form [formGroup]="searchForm">
+    <input placeholder="Search" formControlName="name" />
+    <div
+      class="search-btn"
+      routerLink="/results"
+      [queryParams]="{ name: searchForm.controls.name.value }"
+    >
+      <img src="../../assets/images/search.svg" class="search" />
+    </div>
+  </form>
+  <div class="tools">
+    <img
+      src="../../assets/images/upload.svg"
+      class="tool"
+      [routerLink]="user ? '/upload' : '/login'"
+    />
+    <div routerLink="/login" *ngIf="!user" class="log">Login</div>
+    <div *ngIf="user" (click)="logout()" class="log">Logout</div>
+  </div>
+</div>

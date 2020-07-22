@@ -1,0 +1,9 @@
+<div *ngIf="!user" class="Not-logged">
+  <img src="{{'../../assets/images/'+view+'.png'}}" class="profile-logo" />
+  <h1>Don't miss new Podcasts</h1>
+  <p>Log in to see updates from your favourite Pōddō channels</p>
+  <div routerLink="/login" class="login">
+    <img src="../../assets/images/profile.png" class="login-logo" />
+    Log in
+  </div>
+</div>
