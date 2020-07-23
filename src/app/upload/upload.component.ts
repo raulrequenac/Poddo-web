@@ -50,8 +50,6 @@ export class UploadComponent implements OnInit {
       allowComments: ['', Validators.required],
       audio: ['', Validators.required],
     });
-
-    this.uploadForm.valueChanges.subscribe(console.log);
   }
 
   updateUser = (user) => (this.user = user);

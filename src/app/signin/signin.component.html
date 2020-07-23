@@ -1,7 +1,11 @@
 <app-navbar></app-navbar>
 <app-header></app-header>
 <div class="Signin content">
-  <form>
-    
+  <form [formGroup]="signInForm" (ngSubmit)="submitForm()">
+    <input placeholder="Name" formControlName="name">
+    <input placeholder="Username" formControlName="username">
+    <input placeholder="Password" formControlName="password" type="password">
+    <input type="file" accept="image/*" (change)="onFileChange($event)">
+    <button type="submit">Sign in</button>
   </form>
 </div>

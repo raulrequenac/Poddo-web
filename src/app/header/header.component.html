@@ -19,7 +19,7 @@
       class="tool"
       [routerLink]="user ? '/upload' : '/login'"
     />
-    <div routerLink="/login" *ngIf="!user" class="log">Login</div>
+    <div routerLink="/login" *ngIf="!user" class="log">Log in</div>
     <div *ngIf="user" (click)="logout()" class="log">Logout</div>
   </div>
 </div>

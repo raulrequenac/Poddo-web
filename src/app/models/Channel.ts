@@ -5,7 +5,6 @@ export interface Channel {
   id: number;
   logo: string;
   status: string;
-  userId: number;
   subscribers: number[];
   podcasts: Podcast[];
   playlists: Playlist[];
