@@ -33,7 +33,7 @@
 }
 
 .podcasts {
-  height: calc(100vh - 15rem);
+  min-height: calc(100vh - 15rem);
   width: 100%;
   padding: 3rem 0;
   display: flex;
@@ -42,8 +42,7 @@
 }
 
 .podcast {
-  width: 20vw;
-  height: 12vw;
+  width: 25%;
   padding: 1rem;
 }
 
@@ -76,8 +75,9 @@
   text-align: center;
   background-image: url('../../assets/images/music.jpg');
   background-size: cover;
+  background-position: center;
   width: 100%;
-  height: 100%;
+  height: 12vw;
   border-radius: 5px;
   -webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.75);

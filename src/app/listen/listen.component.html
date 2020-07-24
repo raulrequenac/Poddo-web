@@ -37,14 +37,25 @@
             <p [routerLink]="['/channel', channel.id]" class="name">
               {{ channel.name }}
             </p>
-            <small class="subs" *ngIf="channel.id != user.id" (click)="subscribe()"
-              >{{ channel.subscribers.length }} subscribers</small
-            >
+            <small class="subs">{{ subscribers }} subscribers</small>
           </div>
         </div>
-        <div class="subscribe">Subscribe</div>
+        <div
+          class="subscribe"
+          *ngIf="!user || !subscribed"
+          (click)="user ? subscribe() : toLogin()"
+        >
+          Subscribe
+        </div>
+        <div
+          class="subscribe"
+          *ngIf="user && subscribed"
+          (click)="unsubscribe()"
+        >
+          Unsubscribe
+        </div>
       </div>
-      <p class="description">{{podcast.description}}</p>
+      <p class="description">{{ podcast.description }}</p>
     </div>
     <div class="comments">
       <form

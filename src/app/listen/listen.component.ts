@@ -17,13 +17,24 @@ import { Channel } from '../models/Channel';
 })
 export class ListenComponent implements OnInit {
   channel: Channel;
+  subscribers = 0;
   podcast: Podcast;
-  stars: number;
+  stars = 0;
   comments: Comment[] = [];
   user: User = null;
+  subscribed = false;
   gif = false;
 
   commentForm: FormGroup;
+
+  auth: string = this.cookieService.get('auth');
+
+  httpOptionsCookie = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: this.auth,
+    }),
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -51,9 +62,16 @@ export class ListenComponent implements OnInit {
         this.comments = podcast.comments;
         this.http
           .get<Channel>('http://localhost:8080/channels/' + podcast.channelId)
-          .subscribe((channel) => this.channel = channel);
+          .subscribe(
+            (channel) => {
+              this.channel = channel;
+              this.subscribers = channel.subscribers;
+              this.isSubscribed();
+            },
+            () => this.isSubscribed()
+          );
       });
-  }
+  };
 
   starPodcast = () => {
     this.http
@@ -62,7 +80,7 @@ export class ListenComponent implements OnInit {
         {}
       )
       .subscribe((podcast) => (this.stars = podcast.stars));
-  }
+  };
 
   starComment = (id: number) => {
     this.http
@@ -74,7 +92,7 @@ export class ListenComponent implements OnInit {
           }
         })
       );
-  }
+  };
 
   submitForm = () => {
     if (!this.user) {
@@ -93,11 +111,64 @@ export class ListenComponent implements OnInit {
         comment
       )
       .subscribe((podcast) => (this.comments = podcast.comments));
-  }
+  };
 
-  getUser = (user) => (this.user = user);
+  getUser = (user) => {
+    this.user = user;
+    this.isSubscribed();
+  }
 
   subscribe = () => {
-    
+    this.http
+      .post<Channel>(
+        'http://localhost:8080/channels/' + this.channel.id + '/subscribe',
+        {},
+        this.httpOptionsCookie
+      )
+      .subscribe((channel) => {
+        this.subscribers = channel.subscribers;
+        if (this.auth) {
+          this.http
+            .get<User>(
+              'http://localhost:8080/users/is-user',
+              this.httpOptionsCookie
+            )
+            .subscribe((user) => {
+              this.user = user;
+              this.isSubscribed();
+            });
+        }
+      });
   }
+
+  unsubscribe = () => {
+    this.http
+      .post<Channel>(
+        'http://localhost:8080/channels/' + this.channel.id + '/unsubscribe',
+        {},
+        this.httpOptionsCookie
+      )
+      .subscribe((channel) => {
+        this.subscribers = channel.subscribers;
+        if (this.auth) {
+          this.http
+            .get<User>(
+              'http://localhost:8080/users/is-user',
+              this.httpOptionsCookie
+            )
+            .subscribe((user) => {
+              this.user = user;
+              this.isSubscribed();
+            });
+        }
+      });
+  };
+
+  isSubscribed = () => {
+    this.subscribed =
+      this.user != null &&
+      this.user.subscriptions.some((channel) => channel.id === this.channel.id);
+  };
+
+  toLogin = () => this.router.navigate(['/login'], { relativeTo: this.route });
 }
