@@ -28,6 +28,8 @@ The Front was developed with Angular with a full **CSS-handmade design**. It pre
 
 Every view has a navbar, in which the user can navigate to the principal views, and a header, in which the user can search for podcasts bi title.
 
+<p align="center"><img src="https://github.com/raulrequenac/Poddo-web/blob/master/src/assets/images/Home.png"></p>
+
 ## Usage
 The app must be running in local:
 
