@@ -8,6 +8,7 @@ import { ListenComponent } from './listen/listen.component';
 import { LoginComponent } from './login/login.component';
 import { UploadComponent } from './upload/upload.component';
 import { SigninComponent } from './signin/signin.component';
+import { ChannelComponent } from './channel/channel.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,12 @@ const routes: Routes = [
   }, {
     path: 'signin',
     component: SigninComponent
+  }, {
+    path: 'channel/:id',
+    component: ChannelComponent
+  }, {
+    path: '**',
+    redirectTo: ''
   }
 ];
 

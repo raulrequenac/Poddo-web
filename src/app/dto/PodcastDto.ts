@@ -1,16 +1,26 @@
+import { Channel } from '../models/Channel';
 export class PodcastDto {
   tags: string[];
   title: string;
   description: string;
   status: string;
   allowComments: boolean;
+  channelId: number;
 
-  constructor(tags: string[], title: string, description: string, status: string, allowComments: boolean) {
+  constructor(
+    tags: string[],
+    title: string,
+    description: string,
+    status: string,
+    allowComments: boolean,
+    channelId: number
+  ) {
     this.tags = tags;
     this.title = title;
     this.description = description;
     this.status = status;
     this.allowComments = allowComments;
+    this.channelId = channelId;
   }
 
   public getTags(): string[] {
@@ -51,5 +61,13 @@ export class PodcastDto {
 
   public setAllowComments(allowComments: boolean): void {
     this.allowComments = allowComments;
+  }
+
+  public getChannel(): number {
+    return this.channelId;
+  }
+
+  public setChannel(channelId: number): void {
+    this.channelId = channelId;
   }
 }

@@ -8,11 +8,21 @@
 
 html, body {
   height: 100%;
+  font-family: Roboto;
 }
 
 .content {
+  padding: 1rem 5rem;
   margin-left: 5rem;
-  width: calc(100% - 5rem);
-  min-height: calc(100% - 4rem);
+  min-height: calc(100vh - 4rem);
   background-color: #181818;
+}
+
+.no-podcasts {
+  color: white;
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

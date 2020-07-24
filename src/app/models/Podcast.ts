@@ -11,4 +11,5 @@ export interface Podcast {
   audio: string;
   allowComments: boolean;
   creationDate: Date;
+  channelId: number;
 }

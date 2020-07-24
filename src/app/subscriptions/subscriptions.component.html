@@ -2,4 +2,7 @@
 <app-header (userOut)="updateUser($event)"></app-header>
 <div class="Subscriptions content">
   <app-not-logged [user]="user" [view]="'subscriptions'"></app-not-logged>
+  <div *ngIf="user && !podcasts.length" class="no-podcasts">
+    <p>There's nothing to show here... yet.</p>
+  </div>
 </div>

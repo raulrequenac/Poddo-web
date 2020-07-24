@@ -1,4 +1,18 @@
 <app-navbar></app-navbar>
 <app-header></app-header>
 <div class="Results content">
+  <div *ngIf="!podcasts.length" class="no-podcasts">
+    <p>There's nothing to show here... yet.</p>
+  </div>
+  <div *ngFor="let podcast of podcasts" class="podcast">
+    <div routerLink="{{ '/listen/' + podcast.id }}" class="img"></div>
+    <div class="info">
+      <h1>{{ podcast.title }}</h1>
+      <small
+        >{{ podcast.stars }}
+        <img src="../../assets/images/star.svg" width="10px" />
+      </small>
+      <p>{{podcast.description}}</p>
+    </div>
+  </div>
 </div>

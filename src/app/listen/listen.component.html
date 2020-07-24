@@ -1,25 +1,79 @@
 <app-navbar></app-navbar>
-<app-header></app-header>
+<app-header (userOut)="getUser($event)"></app-header>
 <div class="Listen content">
-  <audio controls controlsList="nodownload" *ngIf="podcast">
-    <source src="{{podcast.audio}}" type="audio/mpeg">
-  </audio>
-  <div>
-    <small *ngFor="let tag of podcast.tags">{{tag}}</small>
-  </div>
-  <h1>{{podcast.title}}</h1>
-  <p>{{podcast.creationDate}}</p>
-  <h2 (click)="starPodcast()">{{stars}} Stars</h2>
-  <div class="comments">
-    <div *ngFor="let comment of podcast.comments" class="comment">
-      <small>{{comment.userId}}</small>
-      <small>{{comment.createdAt}}</small>
-      <p (click)="starComment()">{{comment.stars}} Stars</p>
-      <p>{{comment.text}}</p>
-      <div *ngFor="let response of comment.responses">
-        <small>{{response.userId}}</small>
-        <small>{{response.createdAt}}</small>
-        <p>{{response.text}}</p>
+  <div *ngIf="podcast" class="container">
+    <div class="podcast">
+      <div class="gif">
+        <img src="../../assets/images/poddo.png" class="cover" />
+      </div>
+      <audio controls controlsList="nodownload" class="audio">
+        <source src="{{ podcast.audio }}" type="audio/mpeg" />
+      </audio>
+      <div>
+        <small
+          *ngFor="let tag of podcast.tags"
+          class="tag"
+          routerLink="/results"
+          [queryParams]="{ tag: tag.toUpperCase() }"
+          >#{{ tag }}</small
+        >
+      </div>
+      <h1>{{ podcast.title }}</h1>
+      <div class="info border-b">
+        <small class="date">{{ podcast.creationDate }}</small>
+        <h2 (click)="starPodcast()" class="star">
+          {{ stars }}
+          <img src="../../assets/images/star.svg" class="star-podcast" />
+        </h2>
+      </div>
+      <div class="channel d-flex" *ngIf="channel">
+        <div class="d-flex">
+          <img
+            src="{{ channel.logo || '../../../../assets/images/poddo.png' }}"
+            class="logo"
+            [routerLink]="['/channel', channel.id]"
+          />
+          <div>
+            <p [routerLink]="['/channel', channel.id]" class="name">
+              {{ channel.name }}
+            </p>
+            <small class="subs" *ngIf="channel.id != user.id" (click)="subscribe()"
+              >{{ channel.subscribers.length }} subscribers</small
+            >
+          </div>
+        </div>
+        <div class="subscribe">Subscribe</div>
+      </div>
+      <p class="description">{{podcast.description}}</p>
+    </div>
+    <div class="comments">
+      <form
+        [formGroup]="commentForm"
+        (ngSubmit)="submitForm()"
+        class="add-comment"
+      >
+        <textarea
+          placeholder="Add a public comment..."
+          formControlName="text"
+          class="add-comment-input"
+          rows="3"
+        ></textarea>
+        <button type="submit" class="add-comment-btn">Comment</button>
+      </form>
+      <p *ngIf="comments.length"></p>
+      <div *ngFor="let comment of comments" class="comment border-b">
+        <div class="info">
+          <small class="date">{{ comment.createdAt }}</small>
+          <p (click)="starComment(comment.id)" class="star">
+            {{ comment.stars }}
+            <img src="../../assets/images/star.svg" class="star-comment" />
+          </p>
+        </div>
+        <p class="text">{{ comment.text }}</p>
+        <div *ngFor="let response of comment.responses">
+          <small>{{ response.createdAt }}</small>
+          <p>{{ response.text }}</p>
+        </div>
       </div>
     </div>
   </div>

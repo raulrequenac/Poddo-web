@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { NotLoggedComponent } from './not-logged/not-logged.component';
 import { UploadComponent } from './upload/upload.component';
 import { SigninComponent } from './signin/signin.component';
+import { ChannelComponent } from './channel/channel.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SigninComponent } from './signin/signin.component';
     NotLoggedComponent,
     UploadComponent,
     SigninComponent,
+    ChannelComponent,
   ],
   imports: [
     BrowserModule,

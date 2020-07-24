@@ -2,17 +2,34 @@
 <app-header></app-header>
 <div class="Home content">
   <div class="tags">
-    <div *ngFor="let tag of tags" class="tag">
-      <img src="{{ '../../assets/images/' + tag.toLowerCase() + '.svg' }}" />
+    <div
+      *ngFor="let tag of tags"
+      class="tag"
+      routerLink="/results"
+      [queryParams]="{ tag: tag.toUpperCase() }"
+    >
+      <div class="tag-img">
+        <img src="{{ '../../assets/images/' + tag.toLowerCase() + '.svg' }}" />
+      </div>
+      <p>{{ tag }}</p>
     </div>
   </div>
   <div class="podcasts">
-    <p *ngIf="!podcasts.length" class="no-podcasts">
-      There's nothing to show here... yet.
-    </p>
+    <div *ngIf="!podcasts.length" class="no-podcasts">
+      <p>There's nothing to show here... yet.</p>
+    </div>
     <div class="podcast" *ngFor="let podcast of podcasts">
-      <img src="../../assets/images/home.svg"  width="100%" routerLink="{{'/listen/'+podcast.id}}"/>
-      <p>{{ podcast.title }}</p>
+      <div routerLink="{{ '/listen/' + podcast.id }}" class="img"></div>
+      <p class="title">{{ podcast.title }}</p>
+      <div class="info">
+        <p class="channel" routerLink="{{ '/channel/' + podcast.channel.id }}">
+          {{ podcast.channel.name }}
+        </p>
+        <small>
+          {{ podcast.stars }}
+          <img src="../../assets/images/star.svg" width="10px"/>
+        </small>
+      </div>
     </div>
   </div>
 </div>

@@ -66,6 +66,7 @@ export class UploadComponent implements OnInit {
       this.uploadForm.controls.description.value,
       this.uploadForm.controls.status.value,
       this.uploadForm.controls.allowComments.value,
+      this.user.id
     );
     const formData = new FormData();
     formData.append('file', this.uploadForm.controls.audio.value);

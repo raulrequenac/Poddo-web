@@ -7,7 +7,7 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 5rem);
+  height: calc(100vh - 6rem);
 }
 
 input {
@@ -16,7 +16,7 @@ input {
   text-align: center;
   margin-bottom: 1rem;
   font-size: 1.5rem;
-  border: 0;
+  border: 2px solid transparent;
   border-radius: 5px;
   -webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
